@@ -4,13 +4,14 @@ import { picsumImg } from "./helpers/picsum-helpers.js";
 const picImgs = picData.map((pic) => picsumImg(pic));
 document.querySelector("div").append(...picImgs);
 
-function round(e) {
-  e.target.classList.add("rounded");
-  console.log("this", this);
-  console.log("e.target", e.target);
-  console.log("e", e);
+function round(event) {
+  event.target.classList.toggle("rounded");
 }
 
-document.querySelector("img").addEventListener("click", round);
-
-window.round = round;
+document
+  .querySelector(".photo-container")
+  .addEventListener("click", function (event) {
+    if (event.target.nodeName === "IMG") {
+      event.target.classList.add("rounded");
+    }
+  });
